@@ -140,7 +140,7 @@ CREATE TABLE pessoa(
       tipo_cliente_id number(10)    NOT NULL , 
       system_users_id number(10)   , 
       nome varchar  (255)    NOT NULL , 
-      documento varchar  (20)    NOT NULL , 
+      documento varchar  (20)   , 
       observacao varchar  (500)   , 
       telefone varchar  (20)   , 
       email varchar  (255)   , 
