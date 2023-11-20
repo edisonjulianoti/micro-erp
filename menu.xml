@@ -60,10 +60,6 @@
             <icon>far:circle fa-fw </icon>
             <action>TipoProdutoHeaderList#method=onShow</action>
           </menuitem>
-          <menuitem label="Gerar Dados">
-            <icon> fa-fw </icon>
-            <action>GerarDadosController#method=onShow</action>
-          </menuitem>
         </menu>
       </menuitem>
     </menu>
