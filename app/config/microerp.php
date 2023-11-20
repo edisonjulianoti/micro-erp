@@ -4,7 +4,7 @@ return[
     'name' => "microerp",
     'user' => "",
     'pass' => "",
-    'type' => "pgsql",
+    'type' => "mysql",
     'prep' => "1",
     'slog' => "SystemSqlLogService"
 ];

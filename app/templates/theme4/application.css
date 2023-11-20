@@ -1840,9 +1840,9 @@ div#adianti_tab_content:empty {
 }
 
 .card.panel[widget='bootstrapformbuilder'] > .panel-heading, #chart-box > .panel-heading{
-    color: #333 !important;
-background-color: #f5f5f5 !important;
-    border-top: 2px solid #f5f5f5;
+    background-color: #303334 !important; 
+color: #fff !important;
+    border-top: 2px solid #303334;
 }
 #login-wrapper .card > .panel-heading {
     color: #333 !important;
