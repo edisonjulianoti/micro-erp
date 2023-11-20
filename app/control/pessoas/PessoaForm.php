@@ -62,7 +62,6 @@ class PessoaForm extends TPage
 
         $pessoa_endereco_pessoa_cidade_estado_id->setChangeAction(new TAction([$this,'onChangepessoa_endereco_pessoa_cidade_estado_id']));
 
-        $documento->addValidation("Documento", new TRequiredValidator()); 
         $nome->addValidation("Nome", new TRequiredValidator()); 
         $tipo_cliente_id->addValidation("Tipo do cliente", new TRequiredValidator()); 
         $email->addValidation("Email", new TEmailValidator(), []); 
