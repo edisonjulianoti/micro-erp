@@ -141,6 +141,15 @@ class Pessoa extends TRecord
         $criteria->add(new TFilter('pessoa_id', '=', $this->id));
         return PessoaGrupo::getObjects( $criteria );
     }
+    /**
+     * Method getOrcamentos
+     */
+    public function getOrcamentos()
+    {
+        $criteria = new TCriteria;
+        $criteria->add(new TFilter('pessoa_id', '=', $this->id));
+        return Orcamento::getObjects( $criteria );
+    }
 
     public function set_conta_tipo_conta_to_string($conta_tipo_conta_to_string)
     {
@@ -555,6 +564,32 @@ class Pessoa extends TRecord
         }
     
         $values = PessoaGrupo::where('pessoa_id', '=', $this->id)->getIndexedArray('grupo_pessoa_id','{grupo_pessoa->nome}');
+        return implode(', ', $values);
+    }
+
+    public function set_orcamento_pessoa_to_string($orcamento_pessoa_to_string)
+    {
+        if(is_array($orcamento_pessoa_to_string))
+        {
+            $values = Pessoa::where('id', 'in', $orcamento_pessoa_to_string)->getIndexedArray('nome', 'nome');
+            $this->orcamento_pessoa_to_string = implode(', ', $values);
+        }
+        else
+        {
+            $this->orcamento_pessoa_to_string = $orcamento_pessoa_to_string;
+        }
+
+        $this->vdata['orcamento_pessoa_to_string'] = $this->orcamento_pessoa_to_string;
+    }
+
+    public function get_orcamento_pessoa_to_string()
+    {
+        if(!empty($this->orcamento_pessoa_to_string))
+        {
+            return $this->orcamento_pessoa_to_string;
+        }
+    
+        $values = Orcamento::where('pessoa_id', '=', $this->id)->getIndexedArray('pessoa_id','{pessoa->nome}');
         return implode(', ', $values);
     }
 

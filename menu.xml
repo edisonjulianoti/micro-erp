@@ -48,17 +48,9 @@
             <icon>far:circle fa-fw </icon>
             <action>ProblemaHeaderList#method=onShow</action>
           </menuitem>
-          <menuitem label="Produtos">
-            <icon>far:circle fa-fw </icon>
-            <action>ProdutoList#method=onShow</action>
-          </menuitem>
           <menuitem label="Soluções">
             <icon>far:circle fa-fw </icon>
             <action>SolucaoHeaderList#method=onShow</action>
-          </menuitem>
-          <menuitem label="Tipos de produtos">
-            <icon>far:circle fa-fw </icon>
-            <action>TipoProdutoHeaderList#method=onShow</action>
           </menuitem>
         </menu>
       </menuitem>
@@ -91,6 +83,28 @@
             <action>CategoriaHeaderList#method=onShow</action>
           </menuitem>
         </menu>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="Orcamentos">
+    <icon>fas:coffee fa-fw </icon>
+    <menu>
+      <menuitem label="Orcamentos">
+        <icon>far:circle fa-fw </icon>
+        <action>OrcamentoList#method=onShow</action>
+      </menuitem>
+    </menu>
+  </menuitem>
+  <menuitem label="Cadastro">
+    <icon>fas:edit fa-fw </icon>
+    <menu>
+      <menuitem label="Produtos">
+        <icon>far:circle fa-fw </icon>
+        <action>ProdutoList#method=onShow</action>
+      </menuitem>
+      <menuitem label="Tipos de produtos">
+        <icon>far:circle fa-fw </icon>
+        <action>TipoProdutoHeaderList#method=onShow</action>
       </menuitem>
     </menu>
   </menuitem>

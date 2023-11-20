@@ -74,6 +74,28 @@ CREATE TABLE grupo_pessoa(
       nome varchar  (255)   NOT NULL  , 
  PRIMARY KEY (id)) ; 
 
+CREATE TABLE orcamento( 
+      id  INT IDENTITY    NOT NULL  , 
+      pessoa_id int   NOT NULL  , 
+      data_orcamento date   , 
+      valor float   , 
+ PRIMARY KEY (id)) ; 
+
+CREATE TABLE orcamento_produtos( 
+      id  INT IDENTITY    NOT NULL  , 
+      orcamento_id int   NOT NULL  , 
+      produto_id int   NOT NULL  , 
+      quantidade float   , 
+      valor float   , 
+ PRIMARY KEY (id)) ; 
+
+CREATE TABLE orcamento_servicos( 
+      id  INT IDENTITY    NOT NULL  , 
+      orcamento_id int   NOT NULL  , 
+      produto_id int   NOT NULL  , 
+      valor float   , 
+ PRIMARY KEY (id)) ; 
+
 CREATE TABLE ordem_servico( 
       id  INT IDENTITY    NOT NULL  , 
       cliente_id int   NOT NULL  , 
@@ -262,6 +284,11 @@ ALTER TABLE conta ADD CONSTRAINT fk_conta_2 FOREIGN KEY (categoria_id) reference
 ALTER TABLE conta ADD CONSTRAINT fk_conta_3 FOREIGN KEY (forma_pagamento_id) references forma_pagamento(id); 
 ALTER TABLE conta ADD CONSTRAINT fk_conta_4 FOREIGN KEY (pessoa_id) references pessoa(id); 
 ALTER TABLE conta ADD CONSTRAINT fk_conta_5 FOREIGN KEY (ordem_servico_id) references ordem_servico(id); 
+ALTER TABLE orcamento ADD CONSTRAINT fk_orcamento_1 FOREIGN KEY (pessoa_id) references pessoa(id); 
+ALTER TABLE orcamento_produtos ADD CONSTRAINT fk_orcamento_produtos_1 FOREIGN KEY (orcamento_id) references orcamento(id); 
+ALTER TABLE orcamento_produtos ADD CONSTRAINT fk_orcamento_produtos_2 FOREIGN KEY (produto_id) references produto(id); 
+ALTER TABLE orcamento_servicos ADD CONSTRAINT fk_orcamento_servicos_1 FOREIGN KEY (orcamento_id) references orcamento(id); 
+ALTER TABLE orcamento_servicos ADD CONSTRAINT fk_orcamento_servicos_2 FOREIGN KEY (produto_id) references produto(id); 
 ALTER TABLE ordem_servico ADD CONSTRAINT fk_ordem_servico_1 FOREIGN KEY (cliente_id) references pessoa(id); 
 ALTER TABLE ordem_servico_atendimento ADD CONSTRAINT fk_ordem_servico_atendimento_2 FOREIGN KEY (ordem_servico_id) references ordem_servico(id); 
 ALTER TABLE ordem_servico_atendimento ADD CONSTRAINT fk_ordem_servico_atendimento_3 FOREIGN KEY (solucao_id) references solucao(id); 

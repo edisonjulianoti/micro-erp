@@ -83,6 +83,33 @@ CREATE TABLE grupo_pessoa(
       nome varchar  (255)   NOT NULL  , 
  PRIMARY KEY (id)) ; 
 
+CREATE TABLE orcamento( 
+      id  INTEGER    NOT NULL  , 
+      pessoa_id int   NOT NULL  , 
+      data_orcamento date   , 
+      valor double   , 
+ PRIMARY KEY (id),
+FOREIGN KEY(pessoa_id) REFERENCES pessoa(id)) ; 
+
+CREATE TABLE orcamento_produtos( 
+      id  INTEGER    NOT NULL  , 
+      orcamento_id int   NOT NULL  , 
+      produto_id int   NOT NULL  , 
+      quantidade double   , 
+      valor double   , 
+ PRIMARY KEY (id),
+FOREIGN KEY(orcamento_id) REFERENCES orcamento(id),
+FOREIGN KEY(produto_id) REFERENCES produto(id)) ; 
+
+CREATE TABLE orcamento_servicos( 
+      id  INTEGER    NOT NULL  , 
+      orcamento_id int   NOT NULL  , 
+      produto_id int   NOT NULL  , 
+      valor double   , 
+ PRIMARY KEY (id),
+FOREIGN KEY(orcamento_id) REFERENCES orcamento(id),
+FOREIGN KEY(produto_id) REFERENCES produto(id)) ; 
+
 CREATE TABLE ordem_servico( 
       id  INTEGER    NOT NULL  , 
       cliente_id int   NOT NULL  , 

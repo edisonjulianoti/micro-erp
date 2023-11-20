@@ -1,16 +1,12 @@
 <?php
 
-class Produto extends TRecord
+class Orcamento extends TRecord
 {
-    const TABLENAME  = 'produto';
+    const TABLENAME  = 'orcamento';
     const PRIMARYKEY = 'id';
     const IDPOLICY   =  'serial'; // {max, serial}
 
-    const DELETEDAT  = 'deleted_at';
-    const CREATEDAT  = 'inserted_at';
-    const UPDATEDAT  = 'updated_at';
-
-    private $tipo_produto;
+    private $pessoa;
 
     
 
@@ -20,60 +16,46 @@ class Produto extends TRecord
     public function __construct($id = NULL, $callObjectLoad = TRUE)
     {
         parent::__construct($id, $callObjectLoad);
-        parent::addAttribute('tipo_produto_id');
-        parent::addAttribute('nome');
-        parent::addAttribute('preco');
-        parent::addAttribute('obs');
-        parent::addAttribute('foto');
-        parent::addAttribute('inserted_at');
-        parent::addAttribute('deleted_at');
-        parent::addAttribute('updated_at');
+        parent::addAttribute('pessoa_id');
+        parent::addAttribute('data_orcamento');
+        parent::addAttribute('valor');
             
     }
 
     /**
-     * Method set_tipo_produto
-     * Sample of usage: $var->tipo_produto = $object;
-     * @param $object Instance of TipoProduto
+     * Method set_pessoa
+     * Sample of usage: $var->pessoa = $object;
+     * @param $object Instance of Pessoa
      */
-    public function set_tipo_produto(TipoProduto $object)
+    public function set_pessoa(Pessoa $object)
     {
-        $this->tipo_produto = $object;
-        $this->tipo_produto_id = $object->id;
+        $this->pessoa = $object;
+        $this->pessoa_id = $object->id;
     }
 
     /**
-     * Method get_tipo_produto
-     * Sample of usage: $var->tipo_produto->attribute;
-     * @returns TipoProduto instance
+     * Method get_pessoa
+     * Sample of usage: $var->pessoa->attribute;
+     * @returns Pessoa instance
      */
-    public function get_tipo_produto()
+    public function get_pessoa()
     {
     
         // loads the associated object
-        if (empty($this->tipo_produto))
-            $this->tipo_produto = new TipoProduto($this->tipo_produto_id);
+        if (empty($this->pessoa))
+            $this->pessoa = new Pessoa($this->pessoa_id);
     
         // returns the associated object
-        return $this->tipo_produto;
+        return $this->pessoa;
     }
 
-    /**
-     * Method getOrdemServicoItems
-     */
-    public function getOrdemServicoItems()
-    {
-        $criteria = new TCriteria;
-        $criteria->add(new TFilter('produto_id', '=', $this->id));
-        return OrdemServicoItem::getObjects( $criteria );
-    }
     /**
      * Method getOrcamentoProdutoss
      */
     public function getOrcamentoProdutoss()
     {
         $criteria = new TCriteria;
-        $criteria->add(new TFilter('produto_id', '=', $this->id));
+        $criteria->add(new TFilter('orcamento_id', '=', $this->id));
         return OrcamentoProdutos::getObjects( $criteria );
     }
     /**
@@ -82,60 +64,8 @@ class Produto extends TRecord
     public function getOrcamentoServicoss()
     {
         $criteria = new TCriteria;
-        $criteria->add(new TFilter('produto_id', '=', $this->id));
+        $criteria->add(new TFilter('orcamento_id', '=', $this->id));
         return OrcamentoServicos::getObjects( $criteria );
-    }
-
-    public function set_ordem_servico_item_ordem_servico_to_string($ordem_servico_item_ordem_servico_to_string)
-    {
-        if(is_array($ordem_servico_item_ordem_servico_to_string))
-        {
-            $values = OrdemServico::where('id', 'in', $ordem_servico_item_ordem_servico_to_string)->getIndexedArray('id', 'id');
-            $this->ordem_servico_item_ordem_servico_to_string = implode(', ', $values);
-        }
-        else
-        {
-            $this->ordem_servico_item_ordem_servico_to_string = $ordem_servico_item_ordem_servico_to_string;
-        }
-
-        $this->vdata['ordem_servico_item_ordem_servico_to_string'] = $this->ordem_servico_item_ordem_servico_to_string;
-    }
-
-    public function get_ordem_servico_item_ordem_servico_to_string()
-    {
-        if(!empty($this->ordem_servico_item_ordem_servico_to_string))
-        {
-            return $this->ordem_servico_item_ordem_servico_to_string;
-        }
-    
-        $values = OrdemServicoItem::where('produto_id', '=', $this->id)->getIndexedArray('ordem_servico_id','{ordem_servico->id}');
-        return implode(', ', $values);
-    }
-
-    public function set_ordem_servico_item_produto_to_string($ordem_servico_item_produto_to_string)
-    {
-        if(is_array($ordem_servico_item_produto_to_string))
-        {
-            $values = Produto::where('id', 'in', $ordem_servico_item_produto_to_string)->getIndexedArray('nome', 'nome');
-            $this->ordem_servico_item_produto_to_string = implode(', ', $values);
-        }
-        else
-        {
-            $this->ordem_servico_item_produto_to_string = $ordem_servico_item_produto_to_string;
-        }
-
-        $this->vdata['ordem_servico_item_produto_to_string'] = $this->ordem_servico_item_produto_to_string;
-    }
-
-    public function get_ordem_servico_item_produto_to_string()
-    {
-        if(!empty($this->ordem_servico_item_produto_to_string))
-        {
-            return $this->ordem_servico_item_produto_to_string;
-        }
-    
-        $values = OrdemServicoItem::where('produto_id', '=', $this->id)->getIndexedArray('produto_id','{produto->nome}');
-        return implode(', ', $values);
     }
 
     public function set_orcamento_produtos_orcamento_to_string($orcamento_produtos_orcamento_to_string)
@@ -160,7 +90,7 @@ class Produto extends TRecord
             return $this->orcamento_produtos_orcamento_to_string;
         }
     
-        $values = OrcamentoProdutos::where('produto_id', '=', $this->id)->getIndexedArray('orcamento_id','{orcamento->id}');
+        $values = OrcamentoProdutos::where('orcamento_id', '=', $this->id)->getIndexedArray('orcamento_id','{orcamento->id}');
         return implode(', ', $values);
     }
 
@@ -186,7 +116,7 @@ class Produto extends TRecord
             return $this->orcamento_produtos_produto_to_string;
         }
     
-        $values = OrcamentoProdutos::where('produto_id', '=', $this->id)->getIndexedArray('produto_id','{produto->nome}');
+        $values = OrcamentoProdutos::where('orcamento_id', '=', $this->id)->getIndexedArray('produto_id','{produto->nome}');
         return implode(', ', $values);
     }
 
@@ -212,7 +142,7 @@ class Produto extends TRecord
             return $this->orcamento_servicos_orcamento_to_string;
         }
     
-        $values = OrcamentoServicos::where('produto_id', '=', $this->id)->getIndexedArray('orcamento_id','{orcamento->id}');
+        $values = OrcamentoServicos::where('orcamento_id', '=', $this->id)->getIndexedArray('orcamento_id','{orcamento->id}');
         return implode(', ', $values);
     }
 
@@ -238,7 +168,7 @@ class Produto extends TRecord
             return $this->orcamento_servicos_produto_to_string;
         }
     
-        $values = OrcamentoServicos::where('produto_id', '=', $this->id)->getIndexedArray('produto_id','{produto->nome}');
+        $values = OrcamentoServicos::where('orcamento_id', '=', $this->id)->getIndexedArray('produto_id','{produto->nome}');
         return implode(', ', $values);
     }
 

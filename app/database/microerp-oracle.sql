@@ -74,6 +74,28 @@ CREATE TABLE grupo_pessoa(
       nome varchar  (255)    NOT NULL , 
  PRIMARY KEY (id)) ; 
 
+CREATE TABLE orcamento( 
+      id number(10)    NOT NULL , 
+      pessoa_id number(10)    NOT NULL , 
+      data_orcamento date   , 
+      valor binary_double   , 
+ PRIMARY KEY (id)) ; 
+
+CREATE TABLE orcamento_produtos( 
+      id number(10)    NOT NULL , 
+      orcamento_id number(10)    NOT NULL , 
+      produto_id number(10)    NOT NULL , 
+      quantidade binary_double   , 
+      valor binary_double   , 
+ PRIMARY KEY (id)) ; 
+
+CREATE TABLE orcamento_servicos( 
+      id number(10)    NOT NULL , 
+      orcamento_id number(10)    NOT NULL , 
+      produto_id number(10)    NOT NULL , 
+      valor binary_double   , 
+ PRIMARY KEY (id)) ; 
+
 CREATE TABLE ordem_servico( 
       id number(10)    NOT NULL , 
       cliente_id number(10)    NOT NULL , 
@@ -262,6 +284,11 @@ ALTER TABLE conta ADD CONSTRAINT fk_conta_2 FOREIGN KEY (categoria_id) reference
 ALTER TABLE conta ADD CONSTRAINT fk_conta_3 FOREIGN KEY (forma_pagamento_id) references forma_pagamento(id); 
 ALTER TABLE conta ADD CONSTRAINT fk_conta_4 FOREIGN KEY (pessoa_id) references pessoa(id); 
 ALTER TABLE conta ADD CONSTRAINT fk_conta_5 FOREIGN KEY (ordem_servico_id) references ordem_servico(id); 
+ALTER TABLE orcamento ADD CONSTRAINT fk_orcamento_1 FOREIGN KEY (pessoa_id) references pessoa(id); 
+ALTER TABLE orcamento_produtos ADD CONSTRAINT fk_orcamento_produtos_1 FOREIGN KEY (orcamento_id) references orcamento(id); 
+ALTER TABLE orcamento_produtos ADD CONSTRAINT fk_orcamento_produtos_2 FOREIGN KEY (produto_id) references produto(id); 
+ALTER TABLE orcamento_servicos ADD CONSTRAINT fk_orcamento_servicos_1 FOREIGN KEY (orcamento_id) references orcamento(id); 
+ALTER TABLE orcamento_servicos ADD CONSTRAINT fk_orcamento_servicos_2 FOREIGN KEY (produto_id) references produto(id); 
 ALTER TABLE ordem_servico ADD CONSTRAINT fk_ordem_servico_1 FOREIGN KEY (cliente_id) references pessoa(id); 
 ALTER TABLE ordem_servico_atendimento ADD CONSTRAINT fk_ordem_servico_atendimento_2 FOREIGN KEY (ordem_servico_id) references ordem_servico(id); 
 ALTER TABLE ordem_servico_atendimento ADD CONSTRAINT fk_ordem_servico_atendimento_3 FOREIGN KEY (solucao_id) references solucao(id); 
@@ -421,6 +448,51 @@ BEFORE INSERT ON grupo_pessoa FOR EACH ROW
     BEGIN 
 
         SELECT grupo_pessoa_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
+
+END;
+CREATE SEQUENCE orcamento_id_seq START WITH 1 INCREMENT BY 1; 
+
+CREATE OR REPLACE TRIGGER orcamento_id_seq_tr 
+
+BEFORE INSERT ON orcamento FOR EACH ROW 
+
+    WHEN 
+
+        (NEW.id IS NULL) 
+
+    BEGIN 
+
+        SELECT orcamento_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
+
+END;
+CREATE SEQUENCE orcamento_produtos_id_seq START WITH 1 INCREMENT BY 1; 
+
+CREATE OR REPLACE TRIGGER orcamento_produtos_id_seq_tr 
+
+BEFORE INSERT ON orcamento_produtos FOR EACH ROW 
+
+    WHEN 
+
+        (NEW.id IS NULL) 
+
+    BEGIN 
+
+        SELECT orcamento_produtos_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
+
+END;
+CREATE SEQUENCE orcamento_servicos_id_seq START WITH 1 INCREMENT BY 1; 
+
+CREATE OR REPLACE TRIGGER orcamento_servicos_id_seq_tr 
+
+BEFORE INSERT ON orcamento_servicos FOR EACH ROW 
+
+    WHEN 
+
+        (NEW.id IS NULL) 
+
+    BEGIN 
+
+        SELECT orcamento_servicos_id_seq.NEXTVAL INTO :NEW.id FROM DUAL; 
 
 END;
 CREATE SEQUENCE ordem_servico_id_seq START WITH 1 INCREMENT BY 1; 
