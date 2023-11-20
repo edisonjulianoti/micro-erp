@@ -1,0 +1,94 @@
+<html>
+<head>
+</head>
+<body>
+<p style="margin: 1px 0px; text-align: center;"><span style="font-size: 18pt;"><strong><span style="font-family: 'courier new', courier, monospace;">ORDEM DE SERVIÇO # {$id}</span></strong></span></p>
+<p style="margin: 1px 0px; text-align: center;"> </p>
+<p style="margin: 1px 0px; text-align: center;"> </p>
+<table style="border-collapse: collapse; width: 100%;" border="0">
+<tbody>
+<tr>
+<td style="width: 25%;" colspan="2"><span style="font-family: 'courier new', courier, monospace;"><strong>Cliente: </strong>{$cliente->nome}</span></td>
+<td style="width: 25%; text-align: right;"><span style="font-family: 'courier new', courier, monospace;"><strong>Data de ínicio:</strong></span></td>
+<td style="width: 25%;"><span style="font-family: 'courier new', courier, monospace;">{$data_inicio}</span></td>
+</tr>
+<tr>
+<td style="width: 25%;"> </td>
+<td style="width: 25%;"> </td>
+<td style="width: 25%; text-align: right;"><span style="font-family: 'courier new', courier, monospace;"><strong>Data de fim:</strong></span></td>
+<td style="width: 25%;"><span style="font-family: 'courier new', courier, monospace;">{$data_fim}</span></td>
+</tr>
+<tr>
+<td style="width: 25%;" colspan="4"><span style="font-family: 'courier new', courier, monospace;"><strong>Descrição geral: </strong>{$descricao}</span></td>
+</tr>
+</tbody>
+</table>
+<p style="margin: 1px 0;"> </p>
+<table class="mce-table" style="border-collapse: collapse; border: 1px solid #929292; height: 205px; width: 964px;" border="1" width="350px" cellspacing="0" cellpadding="3" data-detailmodel="OrdemServicoAtendimento.ordem_servico_id">
+<thead>
+<tr style="height: 22px;">
+<th style="width: 949.219px; height: 22px;" colspan="8"><span style="font-family: 'courier new', courier, monospace;">ATENDIMENTOS REALIZADOS</span></th>
+</tr>
+</thead>
+<tbody>
+<tr style="height: 183px;">
+<td style="width: 949.219px; height: 183px;" colspan="8">
+<table style="border-collapse: collapse; width: 100%; height: 120px;" border="0">
+<tbody>
+<tr style="height: 24px;">
+<td style="width: 20%; text-align: right; height: 24px;"><strong><span style="font-family: 'courier new', courier, monospace;">Técnico:</span></strong></td>
+<td style="width: 30%; height: 24px;"><span style="font-family: 'courier new', courier, monospace;">{$tecnico->nome}</span></td>
+<td style="width: 20%; height: 24px; text-align: right;"><strong><span style="font-family: 'courier new', courier, monospace;">Problema:</span></strong></td>
+<td style="width: 30%; height: 24px;"><span style="font-family: 'courier new', courier, monospace;">{$problema->nome}</span></td>
+</tr>
+<tr style="height: 24px;">
+<td style="width: 20%; text-align: right; height: 24px;"><strong><span style="font-family: 'courier new', courier, monospace;">Data:</span></strong></td>
+<td style="width: 30%; height: 24px;"><span style="font-family: 'courier new', courier, monospace;">{$data_atendimento}</span></td>
+<td style="width: 20%; height: 24px; text-align: right;"><strong><span style="font-family: 'courier new', courier, monospace;">Causa:</span></strong></td>
+<td style="width: 30%; height: 24px;"><span style="font-family: 'courier new', courier, monospace;">{$causa->nome}</span></td>
+</tr>
+<tr style="height: 48px;">
+<td style="width: 20%; text-align: right; height: 48px;"><strong><span style="font-family: 'courier new', courier, monospace;">Horário:</span></strong></td>
+<td style="width: 30%; height: 48px;"><span style="font-family: 'courier new', courier, monospace;">{$horario_inicial} até {$horario_final}</span></td>
+<td style="width: 20%; height: 48px; text-align: right;"><strong><span style="font-family: 'courier new', courier, monospace;">Soluçã</span><span style="font-family: 'courier new', courier, monospace;">o:</span></strong></td>
+<td style="width: 30%; height: 48px;"><span style="font-family: 'courier new', courier, monospace;">{$solucao->nome}</span></td>
+</tr>
+<tr style="height: 24px;">
+<td style="width: 20%; text-align: right; height: 24px;"><strong><span style="font-family: 'courier new', courier, monospace;">Observaç</span><span style="font-family: 'courier new', courier, monospace;">ões</span></strong></td>
+<td style="width: 25%; height: 24px;" colspan="3"><span style="font-family: 'courier new', courier, monospace;">{$obs}</span></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p style="margin: 1px 0;"> </p>
+<table class="mce-table" style="border-collapse: collapse; width: 100%; height: 88px; border-color: #929292; border-style: solid;" border="1" width="100%" cellspacing="0" cellpadding="3" data-detailmodel="OrdemServicoItem.ordem_servico_id">
+<thead>
+<tr style="height: 22px;">
+<th style="width: 945.219px; height: 22px;" colspan="5"><span style="font-family: 'courier new', courier, monospace;">MERCADORIAS E SERVIÇOS</span></th>
+</tr>
+<tr style="height: 22px;">
+<td style="width: 40%; height: 22px;"><strong><span style="font-family: 'courier new', courier, monospace;">Produto</span></strong></td>
+<td style="width: 15%; height: 22px;"><strong><span style="font-family: 'courier new', courier, monospace;">Quantidade</span></strong></td>
+<td style="width: 15%; height: 22px;"><strong><span style="font-family: 'courier new', courier, monospace;">Desconto</span></strong></td>
+<td style="width: 15%; height: 22px;"><strong><span style="font-family: 'courier new', courier, monospace;">Valor</span></strong></td>
+<td style="width: 15%; height: 22px;"><strong><span style="font-family: 'courier new', courier, monospace;">Valor total</span></strong></td>
+</tr>
+</thead>
+<tbody>
+<tr style="background-color: #f0f0f0;">
+<td style="width: 40%; height: 22px;"><span style="font-family: 'courier new', courier, monospace;">{$produto->nome}</span></td>
+<td style="width: 15%; height: 22px;"><span style="font-family: 'courier new', courier, monospace;">{$quantidade}</span></td>
+<td style="width: 15%; height: 22px;"><span style="font-family: 'courier new', courier, monospace;">{$desconto}</span></td>
+<td style="width: 15%; height: 22px;"><span style="font-family: 'courier new', courier, monospace;">{$valor}</span></td>
+<td style="width: 15%; height: 22px;"><span style="font-family: 'courier new', courier, monospace;">{$valor_total}</span></td>
+</tr>
+</tbody>
+</table>
+<p style="margin: 1px 0px; text-align: right;"> </p>
+<p style="margin: 1px 0px; text-align: right;"> </p>
+<p style="margin: 1px 0px; text-align: right;"><span style="font-size: 14pt; font-family: 'courier new', courier, monospace;"><strong>Valor Total da OS:</strong> R${$valor_total_geral}</span></p>
+</body>
+</html>
