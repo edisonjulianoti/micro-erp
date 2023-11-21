@@ -1,9 +1,14 @@
 <?php
 class BuilderHttpClientService
 {
-    public static function post($url, $params = [], $authorization = null, $customHeaders = [], $customOptions = [])
+    public static function put($url, $params = [], $authorization = null, $customHeaders = [], $customOptions = [], $jsonPayload = true)
     {
-        return self::request($url, 'POST', $params, $authorization, $customHeaders, $customOptions);
+        return self::request($url, 'PUT', $params, $authorization, $customHeaders, $customOptions, $jsonPayload);
+    }
+    
+    public static function post($url, $params = [], $authorization = null, $customHeaders = [], $customOptions = [], $jsonPayload = true)
+    {
+        return self::request($url, 'POST', $params, $authorization, $customHeaders, $customOptions, $jsonPayload);
     }
 
     public static function get($url, $params = [], $authorization = null, $customHeaders = [], $customOptions = [])
@@ -18,13 +23,21 @@ class BuilderHttpClientService
      * @param $method method type (GET,PUT,DELETE,POST)
      * @param $params request body
      */
-    public static function request($url, $method = 'POST', $params = [], $authorization = null, $customHeaders = [], $customOptions = [])
+    public static function request($url, $method = 'POST', $params = [], $authorization = null, $customHeaders = [], $customOptions = [], $jsonPayload = true)
     {
         $ch = curl_init();
         
         if ($method == 'POST' || $method == 'PUT')
         {
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
+            if($jsonPayload)
+            {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params));
+            }
+            else
+            {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+            }
+            
             curl_setopt($ch, CURLOPT_POST, true);
      
         }
@@ -53,7 +66,9 @@ class BuilderHttpClientService
         
         if (!empty($authorization))
         {
-            $defaults[CURLOPT_HTTPHEADER] = array_merge(['Authorization: '. $authorization], $customHeaders);
+            $defaultheaders = $defaults[CURLOPT_HTTPHEADER] ?? [];
+            
+            $defaults[CURLOPT_HTTPHEADER] = array_merge(['Authorization: '. $authorization], $customHeaders, $defaultheaders);   
         }
         
         curl_setopt_array($ch, $defaults);
@@ -71,7 +86,7 @@ class BuilderHttpClientService
         {
             throw new Exception($output, $info['http_code']);
         }
-
+        
         $return = json_decode($output);
     
         if (json_last_error() != JSON_ERROR_NONE)

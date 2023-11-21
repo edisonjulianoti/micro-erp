@@ -1998,6 +1998,32 @@ border-color: #d58512;
 }
 
 
+@media (max-width: 767px) {
+    .login-medium-logo {
+        width: 80% !important;
+        height: 80px !important;
+        margin: 0 10%;
+    }
+}
+
+.login-medium-logo {
+    background: url('../../../app/images/builderLogoLogin.png');
+    width: 100%;
+    height: 150px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
 
+.builder-template-layout:not(.sidebar-collapse) .main-sidebar .brand-link {
+    background-image: url('../../../app/images/builderLayoutLogo.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    color: transparent;
+}
+.brand-logo {
+    display: none;
+}
 

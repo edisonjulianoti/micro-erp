@@ -64,9 +64,9 @@ class OrdemServicoGerarFinanceiroForm extends TPage
         $this->fieldlist_contas->width = '100%';
         $this->fieldlist_contas->setFieldPrefix('conta_ordem_servico');
         $this->fieldlist_contas->name = 'fieldlist_contas';
-        $this->fieldlist_contas->class .= ' table-responsive';
 
         $this->criteria_fieldlist_contas = new TCriteria();
+        $this->default_item_fieldlist_contas = new stdClass();
 
         $this->form->addField($conta_ordem_servico_id);
         $this->form->addField($conta_ordem_servico___row__id);
@@ -306,7 +306,7 @@ class OrdemServicoGerarFinanceiroForm extends TPage
         $this->form->clear(true);
 
         $this->fieldlist_contas->addHeader();
-        $this->fieldlist_contas->addDetail( new stdClass );
+        $this->fieldlist_contas->addDetail($this->default_item_fieldlist_contas);
 
         $this->fieldlist_contas->addCloneAction(null, 'fas:plus #69aa46', "Clonar");
 
@@ -315,7 +315,7 @@ class OrdemServicoGerarFinanceiroForm extends TPage
     public function onShow($param = null)
     {
         $this->fieldlist_contas->addHeader();
-        $this->fieldlist_contas->addDetail( new stdClass );
+        $this->fieldlist_contas->addDetail($this->default_item_fieldlist_contas);
 
         $this->fieldlist_contas->addCloneAction(null, 'fas:plus #69aa46', "Clonar");
 

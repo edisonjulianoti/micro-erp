@@ -78,9 +78,9 @@ class OrdemServicoForm extends TPage
         $this->produtos_servicos->width = '100%';
         $this->produtos_servicos->setFieldPrefix('ordem_servico_item_ordem_servico');
         $this->produtos_servicos->name = 'produtos_servicos';
-        $this->produtos_servicos->class .= ' table-responsive';
 
         $this->criteria_produtos_servicos = new TCriteria();
+        $this->default_item_produtos_servicos = new stdClass();
 
         $this->form->addField($ordem_servico_item_ordem_servico_id);
         $this->form->addField($ordem_servico_item_ordem_servico___row__id);
@@ -713,7 +713,7 @@ class OrdemServicoForm extends TPage
         $this->form->clear(true);
 
         $this->produtos_servicos->addHeader();
-        $this->produtos_servicos->addDetail( new stdClass );
+        $this->produtos_servicos->addDetail($this->default_item_produtos_servicos);
 
         $this->produtos_servicos->addCloneAction(null, 'fas:plus #69aa46', "Clonar");
 
@@ -722,7 +722,7 @@ class OrdemServicoForm extends TPage
     public function onShow($param = null)
     {
         $this->produtos_servicos->addHeader();
-        $this->produtos_servicos->addDetail( new stdClass );
+        $this->produtos_servicos->addDetail($this->default_item_produtos_servicos);
 
         $this->produtos_servicos->addCloneAction(null, 'fas:plus #69aa46', "Clonar");
 

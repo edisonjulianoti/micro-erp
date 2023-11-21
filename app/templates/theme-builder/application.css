@@ -4400,8 +4400,11 @@ ul.nav.nav-pills.nav-stacked li {
 }
 
 
+.login-medium-logo { background-image: url('../../../app/images/builderLogoLogin.png'); background-position: center;  background-repeat: no-repeat; background-size: contain; color: transparent !important; border: transparent; height: 120px; }
+
+.login-image { background-image: url('../../../app/images/builderDetailLogin.png'); background-position: center;  background-repeat: no-repeat; background-size: contain; color: transparent !important; border: transparent; }
 
 
 
-
+.logo-name { color: transparent } .simulate-logo { background-image: url('../../../app/images/builderLayoutLogo.png'); background-position: center;  background-repeat: no-repeat; background-size: contain; color: transparent !important; }
 

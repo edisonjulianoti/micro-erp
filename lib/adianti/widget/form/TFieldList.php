@@ -42,6 +42,8 @@ class TFieldList extends TTable
     private $totals;
     private $total_functions;
     private $remove_enabled;
+    private $clone_enabled;
+    
     private $remove_icon;
     private $remove_title;
     private $field_prefix;
@@ -74,6 +76,7 @@ class TFieldList extends TTable
         $this->summarize = false;
         $this->total_functions = null;
         $this->remove_enabled = true;
+        $this->clone_enabled = true;
         $this->allow_post_empty = true;
     }
     
@@ -172,7 +175,31 @@ class TFieldList extends TTable
     {
         $this->remove_enabled = false;
     }
+
+    /**
+     * Get remove enabled
+     */
+    public function getRemoveEnabled()
+    {
+        return $this->remove_enabled;
+    }
+
+    /**
+     * Disable clone button
+     */
+    public function disableCloneButton()
+    {
+        $this->clone_enabled = false;
+    }
     
+    /**
+     * Get clone enabled
+     */
+    public function getCloneEnabled()
+    {
+        $this->clone_enabled = false;
+    }
+
     /**
      * Enable sorting
      */
@@ -641,7 +668,10 @@ class TFieldList extends TTable
         $add->add($icon ? new TImage($icon) : '<i class="fa fa-plus green"></i>');
         
         // add buttons in table
-        $row->addCell($add);
+        if($this->clone_enabled)
+        {
+            $row->addCell($add);
+        }
     }
     
     /**
