@@ -289,31 +289,38 @@ class OrdemServicoList extends TPage
 
         $button_cadastrar = new TButton('button_button_cadastrar');
         $button_cadastrar->setAction(new TAction(['OrdemServicoForm', 'onShow']), "Cadastrar");
-        $button_cadastrar->addStyleClass('');
+        $button_cadastrar->addStyleClass('btn-default');
         $button_cadastrar->setImage('fas:plus #69aa46');
 
         $this->datagrid_form->addField($button_cadastrar);
 
         $btnShowCurtainFilters = new TButton('button_btnShowCurtainFilters');
         $btnShowCurtainFilters->setAction(new TAction(['OrdemServicoList', 'onShowCurtainFilters']), "Filtros");
-        $btnShowCurtainFilters->addStyleClass('');
+        $btnShowCurtainFilters->addStyleClass('btn-default');
         $btnShowCurtainFilters->setImage('fas:filter #000000');
 
         $this->datagrid_form->addField($btnShowCurtainFilters);
 
         $button_atualizar = new TButton('button_button_atualizar');
         $button_atualizar->setAction(new TAction(['OrdemServicoList', 'onRefresh']), "Atualizar");
-        $button_atualizar->addStyleClass('');
+        $button_atualizar->addStyleClass('btn-default');
         $button_atualizar->setImage('fas:sync-alt #03a9f4');
 
         $this->datagrid_form->addField($button_atualizar);
 
         $button_limpar_filtros = new TButton('button_button_limpar_filtros');
         $button_limpar_filtros->setAction(new TAction(['OrdemServicoList', 'onClearFilters']), "Limpar filtros");
-        $button_limpar_filtros->addStyleClass('');
+        $button_limpar_filtros->addStyleClass('btn-default');
         $button_limpar_filtros->setImage('fas:eraser #f44336');
 
         $this->datagrid_form->addField($button_limpar_filtros);
+
+        $button_cadastro_de_cliente = new TButton('button_button_cadastro_de_cliente');
+        $button_cadastro_de_cliente->setAction(new TAction(['PessoaSimpleForm', 'onShow']), "Cadastro de Cliente");
+        $button_cadastro_de_cliente->addStyleClass('btn-default');
+        $button_cadastro_de_cliente->setImage('fas:baby #9C27B0');
+
+        $this->datagrid_form->addField($button_cadastro_de_cliente);
 
         $dropdown_button_exportar = new TDropDown("Exportar", 'fas:file-export #2d3436');
         $dropdown_button_exportar->setPullSide('right');
@@ -327,6 +334,7 @@ class OrdemServicoList extends TPage
         $head_left_actions->add($btnShowCurtainFilters);
         $head_left_actions->add($button_atualizar);
         $head_left_actions->add($button_limpar_filtros);
+        $head_left_actions->add($button_cadastro_de_cliente);
 
         $head_right_actions->add($dropdown_button_exportar);
 

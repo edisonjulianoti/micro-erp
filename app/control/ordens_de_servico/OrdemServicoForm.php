@@ -33,8 +33,6 @@ class OrdemServicoForm extends TPage
         $criteria_cliente_id = new TCriteria();
         $criteria_ordem_servico_atendimento_ordem_servico_tecnico_id = new TCriteria();
 
-        $filterVar = GrupoPessoa::CLIENTE;
-        $criteria_cliente_id->add(new TFilter('id', 'in', "(SELECT pessoa_id FROM pessoa_grupo WHERE grupo_pessoa_id = '{$filterVar}')")); 
         $filterVar = GrupoPessoa::TECNICO;
         $criteria_ordem_servico_atendimento_ordem_servico_tecnico_id->add(new TFilter('id', 'in', "(SELECT pessoa_id FROM pessoa_grupo WHERE grupo_pessoa_id = '{$filterVar}')")); 
 
