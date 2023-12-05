@@ -39,19 +39,16 @@ class ContaReceberList extends TPage
         $this->limit = 20;
 
         $criteria_categoria_id = new TCriteria();
-        $criteria_pessoa_id = new TCriteria();
 
         $filterVar = TipoConta::RECEBER;
         $criteria_categoria_id->add(new TFilter('tipo_conta_id', '=', $filterVar)); 
-        $filterVar = GrupoPessoa::CLIENTE;
-        $criteria_pessoa_id->add(new TFilter('id', 'in', "(SELECT pessoa_id FROM pessoa_grupo WHERE grupo_pessoa_id = '{$filterVar}')")); 
 
         $id = new TEntry('id');
         $data_vencimento = new TDate('data_vencimento');
         $data_vencimento_final = new TDate('data_vencimento_final');
         $categoria_id = new TDBCombo('categoria_id', 'microerp', 'Categoria', 'id', '{nome}','nome asc' , $criteria_categoria_id );
         $forma_pagamento_id = new TDBCombo('forma_pagamento_id', 'microerp', 'FormaPagamento', 'id', '{nome}','nome asc'  );
-        $pessoa_id = new TDBCombo('pessoa_id', 'microerp', 'Pessoa', 'id', '{nome}','nome asc' , $criteria_pessoa_id );
+        $pessoa_id = new TDBCombo('pessoa_id', 'microerp', 'Pessoa', 'id', '{nome}','nome asc'  );
         $filtro_rapido = new TRadioGroup('filtro_rapido');
 
 
@@ -262,49 +259,49 @@ class ContaReceberList extends TPage
 
         $button_cadastrar = new TButton('button_button_cadastrar');
         $button_cadastrar->setAction(new TAction(['ContaReceberForm', 'onShow']), "Cadastrar");
-        $button_cadastrar->addStyleClass('');
+        $button_cadastrar->addStyleClass('btn-default');
         $button_cadastrar->setImage('fas:plus #69aa46');
 
         $this->datagrid_form->addField($button_cadastrar);
 
         $btnShowCurtainFilters = new TButton('button_btnShowCurtainFilters');
         $btnShowCurtainFilters->setAction(new TAction(['ContaReceberList', 'onShowCurtainFilters']), "Filtros");
-        $btnShowCurtainFilters->addStyleClass('');
+        $btnShowCurtainFilters->addStyleClass('btn-default');
         $btnShowCurtainFilters->setImage('fas:filter #000000');
 
         $this->datagrid_form->addField($btnShowCurtainFilters);
 
         $button_atualizar = new TButton('button_button_atualizar');
         $button_atualizar->setAction(new TAction(['ContaReceberList', 'onRefresh']), "Atualizar");
-        $button_atualizar->addStyleClass('');
+        $button_atualizar->addStyleClass('btn-default');
         $button_atualizar->setImage('fas:sync-alt #03a9f4');
 
         $this->datagrid_form->addField($button_atualizar);
 
         $button_limpar_filtros = new TButton('button_button_limpar_filtros');
         $button_limpar_filtros->setAction(new TAction(['ContaReceberList', 'onClearFilters']), "Limpar filtros");
-        $button_limpar_filtros->addStyleClass('');
+        $button_limpar_filtros->addStyleClass('btn-default');
         $button_limpar_filtros->setImage('fas:eraser #f44336');
 
         $this->datagrid_form->addField($button_limpar_filtros);
 
         $button_atrasadas = new TButton('button_button_atrasadas');
         $button_atrasadas->setAction(new TAction(['ContaReceberList', 'onFiltrarAtrasadas']), "Atrasadas");
-        $button_atrasadas->addStyleClass('');
+        $button_atrasadas->addStyleClass('btn-default');
         $button_atrasadas->setImage('fas:money-bill-wave #F44336');
 
         $this->datagrid_form->addField($button_atrasadas);
 
         $button_abertas = new TButton('button_button_abertas');
         $button_abertas->setAction(new TAction(['ContaReceberList', 'onFiltrarAbertas']), "Abertas");
-        $button_abertas->addStyleClass('');
+        $button_abertas->addStyleClass('btn-default');
         $button_abertas->setImage('fas:money-bill-wave-alt #FF9800');
 
         $this->datagrid_form->addField($button_abertas);
 
         $button_quitadas = new TButton('button_button_quitadas');
         $button_quitadas->setAction(new TAction(['ContaReceberList', 'onFiltrarQuitadas']), "Quitadas");
-        $button_quitadas->addStyleClass('');
+        $button_quitadas->addStyleClass('btn-default');
         $button_quitadas->setImage('fas:money-bill-wave #4CAF50');
 
         $this->datagrid_form->addField($button_quitadas);

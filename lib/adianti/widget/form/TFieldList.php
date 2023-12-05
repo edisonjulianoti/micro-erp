@@ -43,7 +43,6 @@ class TFieldList extends TTable
     private $total_functions;
     private $remove_enabled;
     private $clone_enabled;
-    
     private $remove_icon;
     private $remove_title;
     private $field_prefix;
@@ -95,29 +94,39 @@ class TFieldList extends TTable
     {
         $data = [];
         
-        foreach($this->fields as $field)
+        if($this->fields)
         {
-            $field_name = $field->getName();
-            $name  = str_replace( ['[', ']'], ['', ''], $field->getName());
-            
-            $data[$name] = $field->getPostData();
+            foreach($this->fields as $field)
+            {
+                $field_name = $field->getName();
+                $name  = str_replace( ['[', ']'], ['', ''], $field->getName());
+                
+                $data[$name] = $field->getPostData();
+            }
         }
+        
         
         $results = [];
         
-        foreach ($data as $name => $values)
+        if($data)
         {
-            $field_name = $name;
-            
-            if (!empty($this->field_prefix))
+            foreach ($data as $name => $values)
             {
-                $field_name = str_replace($this->field_prefix . '_', '', $field_name);
-            }
-            
-            foreach ($values as $row => $value)
-            {
-                $results[$row] = $results[$row] ?? new stdClass;
-                $results[$row]->$field_name = $value;
+                $field_name = $name;
+                
+                if (!empty($this->field_prefix))
+                {
+                    $field_name = str_replace($this->field_prefix . '_', '', $field_name);
+                }
+                
+                if($values)
+                {
+                    foreach ($values as $row => $value)
+                    {
+                        $results[$row] = $results[$row] ?? new stdClass;
+                        $results[$row]->$field_name = $value;
+                    }
+                }
             }
         }
         
@@ -575,13 +584,15 @@ class TFieldList extends TTable
             {
                 $del = new TElement('div');
                 $del->{'class'} = 'btn btn-default btn-sm';
-                $del->{'onclick'} = $this->total_functions . $this->remove_function;
+                $del->{'onclick'} = $this->total_functions;
                 
                 if (isset($this->remove_action))
                 {
                     $string_action = $this->remove_action->serialize(FALSE);
-                    $del->{'onclick'} .= ";__adianti_post_exec('{$string_action}', tfieldlist_get_row_data(this), null, undefined, '1')";
+                    $del->{'onclick'} .= ";__adianti_post_exec('{$string_action}', tfieldlist_get_row_data(this), null, undefined, '1');";
                 }
+
+                $del->{'onclick'} .= $this->remove_function;
                 
                 $del->{'title'} = $this->remove_title ? $this->remove_title : AdiantiCoreTranslator::translate('Delete');
                 $del->add($this->remove_icon ? new TImage($this->remove_icon) : '<i class="fa fa-times red"></i>');

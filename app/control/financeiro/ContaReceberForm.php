@@ -27,16 +27,13 @@ class ContaReceberForm extends TPage
         // define the form title
         $this->form->setFormTitle("Cadastro de conta a receber");
 
-        $criteria_pessoa_id = new TCriteria();
         $criteria_categoria_id = new TCriteria();
 
-        $filterVar = GrupoPessoa::CLIENTE;
-        $criteria_pessoa_id->add(new TFilter('id', 'in', "(SELECT pessoa_id FROM pessoa_grupo WHERE grupo_pessoa_id = '{$filterVar}')")); 
         $filterVar = TipoConta::RECEBER;
         $criteria_categoria_id->add(new TFilter('tipo_conta_id', '=', $filterVar)); 
 
         $id = new TEntry('id');
-        $pessoa_id = new TDBCombo('pessoa_id', 'microerp', 'Pessoa', 'id', '{nome}','nome asc' , $criteria_pessoa_id );
+        $pessoa_id = new TDBCombo('pessoa_id', 'microerp', 'Pessoa', 'id', '{nome}','nome asc'  );
         $categoria_id = new TDBCombo('categoria_id', 'microerp', 'Categoria', 'id', '{nome}','nome asc' , $criteria_categoria_id );
         $forma_pagamento_id = new TDBCombo('forma_pagamento_id', 'microerp', 'FormaPagamento', 'id', '{nome}','nome asc'  );
         $data_emissao = new TDate('data_emissao');

@@ -257,6 +257,18 @@ class TGantt extends TElement
     }
 
     /**
+     * Define hours and count_hours
+     * 
+     * @param $hours Array
+     */
+
+    public function setHours($hours)
+    {
+        $this->hours       = $hours;
+        $this->count_hours = count($hours);
+    }
+
+    /**
      * Define reload events action
      * 
      * @param $reloadAction TAction
